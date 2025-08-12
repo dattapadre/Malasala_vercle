@@ -1,0 +1,59 @@
+<%- include("Navbar") %>
+
+<div class="container bg-white p-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner d-flex align-items-center rounded-3">
+                <h3 class="text-white px-3">About US Information</h3>
+                <div class="stripes"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-5">
+    <form class="border p-4 rounded" action="/admin/save_about" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+
+                    <div class="col-md-6 mt-4">
+                        Title <b class="text-danger">*</b>
+                        <input class="form-control" value="<%=about.title%>" type="text" name="title" required>
+                    </div>
+
+                    <div class="col-md-6 mt-4">
+                        Sub Title <b class="text-danger">*</b>
+                        <input class="form-control" value="<%=about.sub_title%>" type="text" name="subtitle" required>
+                    </div>
+
+                    <div class="col-md-6 mt-4">
+                        Upload Image <b class="text-danger">*</b>
+                        <input class="form-control" type="file" accept="image/*" name="image">
+                    </div>
+
+                    <div class="col-md-6 mt-4 text-center">
+                        <img style="height: 100px;" src="/upload/<%=about.image%>" alt="">
+                    </div>
+
+                    <div class="col-md-12 mt-4">
+                        Details <b class="text-danger">*</b>
+                        <textarea class="form-control" name="details" rows="4" required><%=about.details%></textarea>
+                    </div>
+
+                    <div class="col-md-6 mt-4 text-center">
+                        <!-- Optional preview image space -->
+                        <img style="height: 100px;" src="#" alt="Preview" onerror="this.style.display='none'">
+                    </div>
+
+                    <div class="col-md-12 text-center mt-4">
+                        <button style="background-color: #4f4392;" class="btn text-white">Save About</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include("Footer") %>

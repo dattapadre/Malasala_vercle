@@ -1,0 +1,148 @@
+<%-include("Navbar.ejs")%>
+<!-- Contact Section -->
+<section class="contact-section py-5 position-relative overflow-hidden">
+    <div class="position-absolute top-0 start-0 w-100 h-100">
+        <div class="position-absolute blob-1"></div>
+        <div class="position-absolute blob-2"></div>
+        <div class="position-absolute blob-3"></div>
+        <div class="position-absolute blob-4"></div>
+    </div>
+    
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center mb-5" data-aos="fade-up">
+                <h2  class="display-5 fw-bold text-gradient">Get In Touch</h2>
+            </div>
+        </div>
+        
+        <div class="row g-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-7">
+                <div style="background:transparent;color: #fffce1;backdrop-filter: blur(20px);" class="card border shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-body p-5">
+                        <h3 class="h3 mb-4">Send us a message</h3>
+                        <form class="needs-validation" action="/user_contact" method="post" >
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input style="background:transparent;color: #fffce1;" type="text" name="user_name" class="form-control" id="name" placeholder=" " required>
+                                        <label for="name">Your Name</label>
+                                        <div class="invalid-feedback">
+                                            Please provide your name.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input style="background:transparent;color: #fffce1;" name="user_email" type="email" class="form-control" id="email" placeholder=" " required>
+                                        <label for="email">Email Address</label>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid email.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input style="background:transparent;color: #fffce1;" name="user_mobile" type="number" class="form-control" id="subject" placeholder=" ">
+                                        <label for="subject">Phone Number</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating ">
+                                        <input style="background:transparent;color: #fffce1;" name="user_subject" type="text" class="form-control" id="subject" placeholder="">
+                                        <label for="subject">Subject</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea style="background:transparent;color: #fffce1;" name="user_message" class="form-control" id="message" placeholder="" style="height: 150px" required></textarea>
+                                        <label  for="message">Your Message</label>
+                                        <div class="invalid-feedback">
+                                            Please enter your message.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary  px-4 py-3 rounded-pill shadow" type="submit">
+                                        <span class="submit-text">Send Message</span>
+                                        <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-5">
+                <div style="background:transparent;color: #fffce1;" class="card border rounded-4 overflow-hidden h-100">
+                    <div class="card-body p-5 position-relative">
+                        <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                            <i style="color: #fde047;" class="fas fa-envelope-open-text display-3"></i>
+                        </div>
+                        <h3 class="h3 mb-4">Contact Info</h3>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0 bg-primary bg-opacity-10 p-3 rounded-3">
+                                <i class="fas fa-map-marker-alt text-primary fs-4"></i>
+                            </div>
+                            <div class="ms-4">
+                                <a class="text-decoration-none" href="">
+                                <h5 style="color: #fffce1;" class="h6 mb-1">Our Location</h5>
+                                <p class="mb-0 small opacity-75"><%-contactinfo.Address%></p>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0 bg-primary bg-opacity-10 p-3 rounded-3">
+                                <i class="fas fa-phone-alt text-primary fs-4"></i>
+                            </div>
+                            <div class="ms-4">
+                                <a class="text-decoration-none" href="">
+                                <h5 style="color: #fffce1;" class="h6 mb-1">Phone Number</h5>
+                                <p class="mb-0 small opacity-75">+91 <%-contactinfo.Mobile%></p>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0 bg-primary bg-opacity-10 p-3 rounded-3">
+                                <i class="fas fa-envelope text-primary fs-4"></i>
+                            </div>
+                            <div class="ms-4">
+                               <a class="text-decoration-none" href="https://mail.google.com/mail/?view=cm&fs=1&to=dattapadre357@gmail.com" target="_blank">
+                                  <h5 style="color: #fffce1;">Email Address</h5>
+                                  <p>dattapadre357@gmail.com</p>
+                                </a>
+
+
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4 bg-secondary bg-opacity-25">
+                        
+                        <h5 class="h6 mb-3">Follow Us</h5>
+                        <div class="d-flex">
+                            <a href="<%-contactinfo.Facebook%>" class="btn btn-sm btn-outline-warning rounded-circle me-2 fs-5">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="<%-contactinfo.Twitter%>" class="btn btn-sm btn-outline-warning rounded-circle me-2 fs-5">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="<%-contactinfo.Instagram%>" class="btn btn-sm btn-outline-warning rounded-circle me-2 fs-5">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="<%-contactinfo.Linkedin%>" class="btn btn-sm btn-outline-warning rounded-circle me-2 fs-5">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 mt-5">
+            <iframe class="border rounded-3" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5338.271121515945!2d74.73152858352681!3d19.104470487812865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdcb17ca9d749e5%3A0x516744f9b2f35ec9!2sA2Z%20IT%20HUB%20PVT.%20LTD.!5e0!3m2!1sen!2sin!4v1753349423888!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+<%-include("Footer.ejs")%>

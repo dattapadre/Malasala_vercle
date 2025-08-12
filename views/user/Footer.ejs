@@ -1,0 +1,72 @@
+
+<footer class="footer border-top text-white pt-5 pb-4">
+  <div class="container text-md-left">
+    <div class="row">
+
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+        <h5 class="text-uppercase fw-bold mb-4 self">About Us</h5>
+        <p>
+          We are dedicated to delivering the best services and products with a focus on quality and customer satisfaction.
+        </p>
+      </div>
+
+      <div class="col-md-2  col-lg-2 col-xl-2 mx-auto mb-4">
+        <h5 class="text-uppercase fw-bold mb-4">Quick Links</h5>
+        <p><a href="/" class=" footer-link text-white text-decoration-none">Home</a></p>
+        <p><a href="/about" class=" footer-link text-white text-decoration-none">About US</a></p>
+        <p><a href="/work" class=" footer-link text-white text-decoration-none">Projects</a></p>
+        <p><a href="/contact" class=" footer-link text-white text-decoration-none">Contact</a></p>
+      </div>
+
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+        <h5 class="text-uppercase fw-bold mb-4">Contact</h5>
+        <p><a class="text-white" href=""><i class="fas fa-home me-3"></i></a><%-contactinfo.Address%></p>
+        <p><a class="text-white" href=""><i class="fas fa-envelope me-3"></i></a> <%-contactinfo.Email%></p>
+        <p><a class="text-white" href=""><i class="fas fa-phone me-3"></i></a> +91 <%-contactinfo.Mobile%></p>
+      </div>
+
+
+      <div class="col-md-4 col-lg-4 col-xl-3 mx-auto mb-md-0 mb-4">
+        <h5 class="text-uppercase fw-bold mb-4">Follow Us</h5>
+        <a href="<%-contactinfo.Facebook%>" class="text-white me-4 fs-5"><i class="fab fa-facebook-f"></i></a>
+        <a href="<%-contactinfo.Twitter%>" class="text-white me-4 fs-5"><i class="fab fa-twitter"></i></a>
+        <a href="<%-contactinfo.Instagram%>" class="text-white me-4 fs-5"><i class="fab fa-instagram"></i></a>
+        <a href="<%-contactinfo.Linkedin%>" class="text-white me-4 fs-5"><i class="fab fa-linkedin"></i></a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="text-center p-3 mt-3 border-top border-secondary">
+    © 2025 A2Z IT HUB. All Rights Reserved.
+  </div>
+</footer>
+
+
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/body.js"></script>
+<script>
+  $(function () {
+    $('#navbar_toggle_btn').click(function () {
+      $('.navbar_box').animate({ right: '0%' }, 150);
+    });
+
+    $('.close').click(function () {
+      $('.navbar_box').animate({ right: '-100%' }, 150);
+    });
+  });
+</script>
+<script>
+  AOS.init({
+    disable: false,
+    duration: 700,
+    easing: 'linear'
+  });
+</script>
+
+</body>
+</html>

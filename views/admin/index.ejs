@@ -1,0 +1,629 @@
+<%-include("Navbar")%>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+    <style>
+        :root {
+            --primary: #4e73df;
+            --success: #1cc88a;
+            --danger: #e74a3b;
+            --warning: #f6c23e;
+            --info: #36b9cc;
+            --dark: #5a5c69;
+        }
+        
+        body {
+            background-color: #f8f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #224abe 100%);
+            color: white;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .stat-card {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card.primary { border-left-color: var(--primary); }
+        .stat-card.success { border-left-color: var(--success); }
+        .stat-card.danger { border-left-color: var(--danger); }
+        .stat-card.warning { border-left-color: var(--warning); }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+        
+        .loan-table {
+            font-size: 0.9rem;
+        }
+        
+        .badge-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .badge-approved {
+            background-color: rgba(28, 200, 138, 0.2);
+            color: var(--success);
+        }
+        
+        .badge-pending {
+            background-color: rgba(246, 194, 62, 0.2);
+            color: var(--warning);
+        }
+        
+        .badge-rejected {
+            background-color: rgba(231, 74, 59, 0.2);
+            color: var(--danger);
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px;
+            }
+        }
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <!-- <header style="border-radius: 20px; " class="dashboard-header py-4 mb-4 shadow">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h3 mb-0"><i class="fas fa-solid fa-school me-2"></i>student Manager</h1>
+                    <p class="mb-0">Welcome back, Admin</p>
+                </div>
+                <div class="d-flex">
+                    <button class="btn btn-light me-2"><i class="fas fa-bell"></i></button>
+                    <button class="btn btn-light"><i class="fas fa-cog"></i></button>
+                </div>
+            </div>
+        </div>
+    </header> -->
+
+    <div class="container-fluid px-4 mt-5">
+        <!-- Stats Row -->
+        <div class="row g-4 mb-4">
+            <!-- Total Loans -->
+             
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card primary h-100">
+                    <a href="/admin/orders">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase text-muted mb-2">Total Orders</h6>
+                                <h3 class="mb-0"><i class="fa-solid fa-diagram-project px-3"></i><%=orders%></h3>
+                                <p class="text-success mb-0"><small><i class="fas fa-arrow-up me-1"></i>--</small></p>
+                            </div>
+                            <div class="bg-primary bg-opacity-10 p-3 rounded">
+                                <i class="fa-solid fa-hamsa fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+  
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card success h-100">
+                    <a href="/admin/orders">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase text-muted mb-2">Completed Orders</h6>
+                                <h3 class="mb-0"><i class="fa-solid fa-hands-holding-circle px-3"></i><%=comp_orders%></h3>
+                                <p class="text-success mb-0"><small><i class="fas fa-arrow-up me-1"></i>--</small></p>
+                            </div>
+                            <div class="bg-success bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-solid fa-chalkboard-user me-1 fs-4 "></i>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Overdue Payments -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card danger h-100">
+                    <a href="/admin/all_project">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase text-muted mb-2">Active Projects</h6>
+                                <h3 class="mb-0"><i class="fa-solid fa-bars-progress px-3"></i> <%=projects%></h3>
+                                <p class="text-danger mb-0"><small><i class="fas fa-arrow-down me-1"></i> 4.2%</small></p>
+                            </div>
+                            <div class="bg-danger bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-exclamation-triangle text-danger fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            </div>
+             
+            <!-- Approval Rate -->
+            <div class="col-xl-3 col-md-6">
+                <div class="card stat-card warning h-100">
+                    <div class="card-body">
+                        <a href="/admin/contact">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase text-muted mb-2">Visit People</h6>
+                                <h3 class="mb-0"> <i class="fa-solid fa-users"></i>  <%=visit%></h3>
+                                <p class="text-warning mb-0"><small><i class="fas fa-equals me-1"></i> Stable</small></p>
+                            </div>
+                            <div class="bg-warning bg-opacity-10 p-3 rounded">
+                                <i class="fas fa-percent text-warning fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Main Content Row -->
+        <div class="row g-4 mb-4">
+            <!-- Loan Disbursement Chart -->
+            <div class="col-lg-8">
+                <div class="card h-100">
+                    <div class="card-header d-flex justify-content-between align-items-center bg-white">
+                        <h5 class="mb-0"> Academic Orders </h5>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Year
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">This Week</a></li>
+                                <li><a class="dropdown-item" href="#">This Month</a></li>
+                                <li><a class="dropdown-item" href="#">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="disbursementChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loan Portfolio Composition -->
+            <!-- <div class="col-lg-4">
+                <div class="card h-100">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">Loan Portfolio</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="portfolioChart"></canvas>
+                        </div>
+                        <div class="mt-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="bg-primary rounded-circle me-2" style="width: 12px; height: 12px;"></div>
+                                <small>Personal Loans (42%)</small>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="bg-success rounded-circle me-2" style="width: 12px; height: 12px;"></div>
+                                <small>Business Loans (28%)</small>
+                            </div>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="bg-info rounded-circle me-2" style="width: 12px; height: 12px;"></div>
+                                <small>Mortgages (18%)</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-warning rounded-circle me-2" style="width: 12px; height: 12px;"></div>
+                                <small>Auto Loans (12%)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        
+
+            
+    <style>
+        .calendar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .calendar-header {
+              background: linear-gradient(to right, #4b3f92, #524698,#655aa4,#7166ac, #8c82c4);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            padding: 10px;
+        }
+        
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .day:hover {
+            background-color: #e9ecef;
+        }
+        
+        .day-number {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .event {
+            width: 100%;
+            font-size: 0.7rem;
+              background: linear-gradient(to right, #4b3f92, #524698,#655aa4,#7166ac, #8c82c4);
+            color: white;
+            border-radius: 3px;
+            padding: 2px 5px;
+            margin: 1px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .other-month {
+            color: #adb5bd;
+        }
+        
+        .today {
+              background: linear-gradient(to right, #4b3f92, #524698,#655aa4,#7166ac, #8c82c4);
+            color: white;
+        }
+        
+        .today:hover {
+            background-color: #655aa4;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="container py-5">
+        <div class="row justify-content-center"> -->
+            <div class="col-md-4">
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-sm btn-light" id="prev-month">
+                                <i class="bi bi-chevron-left"></i> Prev
+                            </button>
+                            <h4 class="m-0" id="current-month-year">July 2023</h4>
+                            <button class="btn btn-sm btn-light" id="next-month">
+                                Next <i class="bi bi-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-weekdays">
+                        <div>Sun</div>
+                        <div>Mon</div>
+                        <div>Tue</div>
+                        <div>Wed</div>
+                        <div>Thu</div>
+                        <div>Fri</div>
+                        <div>Sat</div>
+                    </div>
+                    
+                    <div class="calendar-days" id="calendar-days">
+                        <!-- Days will be populated by JavaScript -->
+                    </div>
+                </div>
+            <!-- </div>
+        </div> -->
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <script>
+        // Sample events data
+        const events = [
+            { date: '2023-07-15', title: 'Team Meeting' },
+            { date: '2023-07-20', title: 'Project Deadline' },
+            { date: '2023-07-05', title: 'Conference Call' },
+            { date: '2023-07-25', title: 'Client Presentation' }
+        ];
+        
+        let currentDate = new Date();
+        
+        function renderCalendar() {
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = '';
+            
+            // Set month and year in header
+            document.getElementById('current-month-year').textContent = 
+                new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(currentDate);
+            
+            // Get first day of month and total days in month
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            const totalDays = lastDay.getDate();
+            
+            // Get day of week for first day (0-6, Sun-Sat)
+            const startingDay = firstDay.getDay();
+            
+            // Get days from previous month
+            const prevMonthLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+            
+            // Get today's date for highlighting
+            const today = new Date();
+            const isCurrentMonth = today.getFullYear() === currentDate.getFullYear() && 
+                                 today.getMonth() === currentDate.getMonth();
+            
+            // Create calendar days
+            let dayCount = 1;
+            let nextMonthDay = 1;
+            
+            // We'll create 6 rows to ensure the calendar has consistent height
+            for (let i = 0; i < 42; i++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day';
+                
+                if (i < startingDay) {
+                    // Previous month days
+                    const prevDay = prevMonthLastDay - (startingDay - i - 1);
+                    dayElement.innerHTML = `<div class="day-number other-month">${prevDay}</div>`;
+                    dayElement.classList.add('other-month');
+                } else if (dayCount <= totalDays) {
+                    // Current month days
+                    const dateStr = `${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2, '0')}-${dayCount.toString().padStart(2, '0')}`;
+                    
+                    // Check if today
+                    if (isCurrentMonth && dayCount === today.getDate()) {
+                        dayElement.classList.add('today');
+                    }
+                    
+                    dayElement.innerHTML = `<div class="day-number">${dayCount}</div>`;
+                    
+                    // Add events for this day
+                    const dayEvents = events.filter(event => event.date === dateStr);
+                    dayEvents.forEach(event => {
+                        dayElement.innerHTML += `<div class="event">${event.title}</div>`;
+                    });
+                    
+                    dayCount++;
+                } else {
+                    // Next month days
+                    dayElement.innerHTML = `<div class="day-number other-month">${nextMonthDay}</div>`;
+                    dayElement.classList.add('other-month');
+                    nextMonthDay++;
+                }
+                
+                calendarDays.appendChild(dayElement);
+            }
+        }
+        
+        // Navigation buttons
+        document.getElementById('prev-month').addEventListener('click', () => {
+            currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+            renderCalendar();
+        });
+        
+        document.getElementById('next-month').addEventListener('click', () => {
+            currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+            renderCalendar();
+        });
+        
+        // Initialize calendar
+        renderCalendar();
+    </script>
+
+        </div>
+        
+        <!-- Second Row -->
+
+        </div>
+    
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart Initialization -->
+    <script>
+        // Loan Disbursement Chart (Line)
+const disbursementCtx = document.getElementById('disbursementChart').getContext('2d');
+
+const disbursementChart = new Chart(disbursementCtx, {
+    type: 'line',
+    data: {
+        labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+        datasets: [{
+            label: 'Academic Result (%)',
+            data: [20, 30, 30, 40, 50, 55, 63, 68, 70, 78, 85],
+            backgroundColor: 'rgba(78, 115, 223, 0.05)',
+            borderColor: 'rgba(78, 115, 223, 1)',
+            borderWidth: 2,
+            tension: 0.3,
+            fill: true,
+            pointBackgroundColor: 'rgba(78, 115, 223, 1)',
+            pointRadius: 4
+        }]
+    },
+    options: {
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true
+            },
+            tooltip: {
+                mode: 'index',
+                intersect: false,
+                callbacks: {
+                    label: function(context) {
+                        return context.dataset.label + ': ' + context.raw + '%';
+                    }
+                }
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                    callback: function(value) {
+                        return value + '%';
+                    }
+                }
+            }
+        }
+    }
+});
+
+        
+        // Loan Portfolio Chart (Doughnut)
+        const portfolioCtx = document.getElementById('portfolioChart').getContext('2d');
+        const portfolioChart = new Chart(portfolioCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Personal Loans', 'Business Loans', 'Mortgages', 'Auto Loans'],
+                datasets: [{
+                    data: [42, 28, 18, 12],
+                    backgroundColor: [
+                        'rgba(78, 115, 223, 0.8)',
+                        'rgba(28, 200, 138, 0.8)',
+                        'rgba(54, 185, 204, 0.8)',
+                        'rgba(246, 194, 62, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(78, 115, 223, 1)',
+                        'rgba(28, 200, 138, 1)',
+                        'rgba(54, 185, 204, 1)',
+                        'rgba(246, 194, 62, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        
+        // Approval Rate Chart (Bar)
+        const approvalCtx = document.getElementById('approvalChart').getContext('2d');
+        const approvalChart = new Chart(approvalCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Q1 2022', 'Q2 2022', 'Q3 2022', 'Q4 2022', 'Q1 2023', 'Q2 2023'],
+                datasets: [{
+                    label: 'Approval Rate (%)',
+                    data: [72, 75, 74, 76, 77, 78],
+                    backgroundColor: 'rgba(28, 200, 138, 0.7)',
+                    borderColor: 'rgba(28, 200, 138, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        min: 60,
+                        max: 80
+                    }
+                }
+            }
+        });
+        
+        // Delinquency Rate Chart (Horizontal Bar)
+        const delinquencyCtx = document.getElementById('delinquencyChart').getContext('2d');
+        const delinquencyChart = new Chart(delinquencyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Personal Loans', 'Business Loans', 'Mortgages', 'Auto Loans'],
+                datasets: [{
+                    label: 'Delinquency Rate (%)',
+                    data: [5.2, 3.8, 1.5, 4.7],
+                    backgroundColor: [
+                        'rgba(231, 74, 59, 0.7)',
+                        'rgba(231, 74, 59, 0.7)',
+                        'rgba(231, 74, 59, 0.7)',
+                        'rgba(231, 74, 59, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(231, 74, 59, 1)',
+                        'rgba(231, 74, 59, 1)',
+                        'rgba(231, 74, 59, 1)',
+                        'rgba(231, 74, 59, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+<%-include("Footer")%>
+
+
+

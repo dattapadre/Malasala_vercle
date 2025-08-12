@@ -1,0 +1,67 @@
+<%-include("Navbar")%>
+<div class="container bg-white p-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner d-flex align-items-center rounded-3">
+            <h3 class="text-white px-3">About Information</h3>
+            <div class="stripes"></div>
+           </div>
+        </div>
+
+      </div>
+</div>  
+<div class="container px-5">
+    <form class="border p-4 rounded" action="/admin/save_aboutInfo" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4 mt-4">
+                     Enter Web Logo
+                    <input class="form-control" type="file" accept="image/*" name="logo"  id="">
+                </div>
+                <div class="col-md-4 mt-4">
+                     Emial
+                    <input class="form-control" value="<%-data.Email%>" type="email" name="Email" required id="">
+                </div>
+                <div class="col-md-4 mt-4">
+                    Mobile
+                    <input class="form-control" value="<%-data.Mobile%>" type="number" name="mobile" required id="">
+                </div>
+                <div class="col-md-4 mt-4">
+                    Whatsapp No
+                    <input class="form-control" value="<%-data.Whatsapp%>" type="number" name="Whatsapp" required id="">
+                </div>
+                <div class="col-md-4 mt-4">
+                    Facebook
+                    <input class="form-control" value="<%-data.Facebook%>" type="text" name="facebook" required id="">
+                </div>
+                <div class="col-md-4 mt-4">
+                    Instagram
+                    <input class="form-control" value="<%-data.Instagram%>" type="text" name="instagram" required id="">
+                </div>
+                <div class="col-md-4 mt-4">
+                    Twitter
+                    <input class="form-control" value="<%-data.Twitter%>" type="text" name="twitter" required id="">
+                </div>
+                <div class="col-md-4 mt-4">
+                    Linkedin
+                    <input class="form-control" value="<%-data.Linkedin%>" type="text" name="linkedin" required id="">
+                </div>
+                <div class="col-md-4 mt-4  text-center">
+                    <img style="height: 65px;" class="" src="/upload/<%-data.logo%>" alt="">
+                </div>
+                <div class="col-md-12 mt-4">
+                     Address
+                    <textarea name="address"  class="form-control" required id=""><%-data.Address%></textarea>
+                </div>
+
+                <div class="col-md-12 text-center mt-4">
+                    <button style="background-color: #4f4392;" class="btn text-white">Save Info</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+<%-include("Footer")%>

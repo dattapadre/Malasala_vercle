@@ -1,0 +1,67 @@
+<%-include("Navbar")%>
+<link rel="stylesheet" href="/css/home.css">
+
+<div class="container-flud py-4 position-relative overflow-hidden">
+  <!-- Blobs inside container -->
+  <div class="blob-container position-absolute top-0 start-0 w-100 h-100">
+    <div class="position-absolute blob-1"></div>
+    <div class="position-absolute blob-2"></div>
+    <div class="position-absolute blob-3"></div>
+    <div class="position-absolute blob-4"></div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-md-5 text-center text-white z-1">
+      <h1 class="animated-text mb-3" id="animatedText">Creative Arts</h1>
+      <p class="lead ms-4"><%=hero_section.description%></p> 
+
+      <div class="button-wrapper">
+        <a href="/work">
+          <button class="animated-button">
+            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+            </svg>
+            <span class="text"><%=hero_section.button_text%></span>
+            <span class="circle"></span>
+            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z" />
+            </svg>
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-7 rotated-wrapper z-1">
+      <div class="row images justify-content-center">
+        <div data-aos="fade-down"style="background-image: url(/upload/<%=hero_section.image1%>);" class="image-box mx-2"></div>
+        <div data-aos="fade-up"data-aos-easing="linear" data-aos-duration="700" style="background-image: url('/upload/<%=hero_section.image2%>');" class="image-box mx-2"></div>
+        <div data-aos="fade-down"data-aos-easing="linear" data-aos-duration="700" id="image4" style="background-image: url(/upload/<%=hero_section.image3%>);" class="image-box mx-2"></div>
+        <div data-aos="fade-up"data-aos-easing="linear" data-aos-duration="700" id="image5" style ="background-image: url('/upload/<%=hero_section.image4%>');" class="image-box mx-2"></div>
+        <div data-aos="fade-down"data-aos-easing="linear" data-aos-duration="700" id="image6" style="background-image: url('/upload/<%=hero_section.image5%>');" class="image-box mx-2"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Inserted from backend (hero_titles is an array)
+  const texts = <%- JSON.stringify(hero_titles) %>;
+
+  let index = 0;
+  const textElement = document.getElementById("animatedText");
+
+  if (texts.length > 0 && textElement) {
+    // Set initial text
+    textElement.textContent = texts[0];
+
+    // Change text every 3 seconds
+    setInterval(() => {
+      index = (index + 1) % texts.length;
+      textElement.textContent = texts[index];
+    }, 3000);
+  }
+</script>
+
+
+<%-include("Footer")%>

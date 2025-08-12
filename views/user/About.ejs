@@ -1,0 +1,60 @@
+<%- include("Navbar") %>
+
+<!-- Hero Section -->
+<section class=" text-white text-center py-5 position-relative overflow-hidden">
+  <div class="container">
+    <h1 class="display-3 fw-bold" id="typewriter">About Us</h1>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="bg-black text-white py-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Text Content -->
+      <div class="col-md-6 text-center text-md-start p-4">
+        <h1 class="fw-bold"><%=about.title%></h1>
+        <h4 class=" text-white"><%=about.sub_title%></h4>
+        <p class="fs-5 mt-3"><%=about.details%></p>
+      </div>
+
+      <!-- Image -->
+      <div class="col-md-6 text-center p-4">
+        <img src="/upload/<%=about.image%>"
+             alt="About Image"
+             class="img-fluid shadow-lg border border-3 border-light rounded-4"
+             style="max-width: 300px;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Stats Section -->
+<section class=" text-white py-5">
+  <div class="container">
+    <div class="row text-center g-4">
+      <div class="col-md-4">
+        <div class="stat-card p-4 bg-dark rounded-4 shadow-sm h-100">
+          <h2 class="display-4 fw-bold">8+</h2>
+          <p class="mb-0">Years of Experience</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card p-4 bg-dark rounded-4 shadow-sm h-100">
+          <h2 class="display-4 fw-bold"><%=project.total_projects%> +</h2>
+          <p class="mb-0">Projects Completed</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card p-4 bg-dark rounded-4 shadow-sm h-100">
+          <h2 class="display-4 fw-bold"><%=project_total.total%> +</h2>
+          <p class="mb-0">Creative Professionals</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("Footer") %>

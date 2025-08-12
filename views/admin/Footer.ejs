@@ -1,0 +1,64 @@
+</div>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  AOS.init();
+
+  // Sidebar toggle
+  const sidebar = document.getElementById('sidebar');
+  const mainContent = document.getElementById('mainContent');
+  const toggleBtn = document.getElementById('toggleSidebar');
+  const overlay = document.getElementById('overlay');
+
+  toggleBtn.addEventListener('click', () => {
+    if (window.innerWidth < 992) {
+      sidebar.classList.toggle('show');
+      overlay.style.display = sidebar.classList.contains('show') ? 'block' : 'none';
+    } else {
+      sidebar.classList.toggle('sidebar-collapsed');
+      mainContent.classList.toggle('main-content-collapsed');
+    }
+  });
+
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('show');
+    overlay.style.display = 'none';
+  });
+
+  // Dropdown
+  document.getElementById('userProfile').addEventListener('click', () => {
+    document.getElementById('userDropdown').classList.toggle('show');
+  });
+
+  window.addEventListener('click', (event) => {
+    if (!event.target.closest('#userProfile')) {
+      document.getElementById('userDropdown').classList.remove('show');
+    }
+  });
+
+  // Submenu toggle
+  document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const submenu = toggle.nextElementSibling;
+      const icon = toggle.querySelector('.toggle-icon');
+      document.querySelectorAll('.submenu').forEach(s => s !== submenu && s.classList.remove('show'));
+      document.querySelectorAll('.toggle-icon').forEach(i => i !== icon && i.classList.remove('rotate'));
+      submenu.classList.toggle('show');
+      icon.classList.toggle('rotate');
+    });
+  });
+
+  // CKEditor
+  let ckeditor;
+  ClassicEditor.create(document.querySelector(".editor"))
+    .then(editor => ckeditor = editor)
+    .catch(error => console.error(error));
+</script>
+
+</body>
+</html>

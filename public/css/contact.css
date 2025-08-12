@@ -1,0 +1,88 @@
+
+    .text-gradient {
+        background: linear-gradient(90deg, #fde047, #7bb910);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+    }
+    
+    .blob-1 {
+        width: 400px;
+        height: 400px;
+        background: rgba(229, 200, 70, 0.183);
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        top: -100px;
+        left: -100px;
+        animation: blob-animate 15s linear infinite;
+    }
+    
+    .blob-2 {
+        width: 300px;
+        height: 300px;
+        background: rgba(232, 219, 35, 0.39);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        bottom: -100px;
+        right: -100px;
+        animation: blob-animate 20s linear infinite reverse;
+    }
+        .blob-3 {
+        width: 300px;
+        height: 300px;
+        background: rgba(232, 35, 173, 0.39);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        bottom: -100px;
+        right: 700px;
+        animation: blob-animate 20s linear infinite reverse;
+    }
+        .blob-4 {
+        width: 300px;
+        height: 300px;
+        background: rgba(232, 219, 35, 0.39);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        bottom: -100px;
+        right: -100px;
+        animation: blob-animate 20s linear infinite reverse;
+    }
+    
+
+    
+    @keyframes blob-animate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    
+    .form-control {
+        border-color: #dee2e6;
+    }
+    
+    .form-control:focus {
+        box-shadow: 0 0 0 0.25rem rgba(70, 229, 173, 0.25);
+        border-color: #4f46e5;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(90deg, #fde047, #b97810);
+        border: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    }
+    .fab:hover{
+        border: #fde047;
+    }
+    
+::placeholder{
+    color: #fffce1!important;
+}
+label {
+  color: #fffce1;
+  opacity: 0.3; /* 50% transparent */
+}
+p{
+    color: #fffce1;
+}

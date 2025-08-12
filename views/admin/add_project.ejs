@@ -1,0 +1,52 @@
+<%- include("Navbar") %>
+
+<div class="container bg-white p-4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="banner d-flex align-items-center rounded-3">
+                <h3 class="text-white px-3">Add Painting</h3>
+                <div class="stripes"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container px-5 mt-4">
+    <form class="border p-4 rounded" action="/admin/save_painting" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6 mt-4">
+                Painting Type <b class="text-danger">*</b>
+                <select class="form-control mt-2 text-center" name="painting_type" id="" required>
+                    <option>--- Select Painting Type ---</option>
+                    <option value="sketch">Blood Paintings</option>
+                    <option value="painting">Pencil Sketch</option>
+                </select>
+            </div>
+            <div class="col-md-6 mt-4">
+                  Painting Size <b class="text-danger">*</b>
+                <input class="form-control mt-2" type="text" name="size" required placeholder="Painting Size">
+            </div>
+            <div class="col-md-6 mt-4">
+                Without Frame Price <b class="text-danger">*</b>
+                <input class="form-control mt-2" type="number" name="without_frame_price" required placeholder="Without Frame Price">
+            </div>
+            <div class="col-md-6 mt-4">
+                With Frame Price <b class="text-danger">*</b>
+                <input class="form-control mt-2" type="number" name="with_frame_price" required placeholder="With Frame Price">
+            </div>
+            <div class="col-md-6 mt-4">
+                Image 1 <b class="text-danger">*</b>
+                <input class="form-control mt-2" type="file" name="image1" accept="image/*" required placeholder="Image 1 ">
+            </div>
+            <div class="col-md-6 mt-4">
+                Image 2 <b class="text-danger">*</b>
+                <input class="form-control mt-2" type="file" name="image2" accept="image/*" placeholder="Image 2">
+            </div>
+            <div class="col-md-12 text-center mt-4">
+                <button class="btn text-white" style="background-color: #4f4392;">Save Painting</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include("Footer") %>

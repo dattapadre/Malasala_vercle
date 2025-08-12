@@ -1,0 +1,90 @@
+<%- include("Navbar") %>
+
+<div class="container p-5">
+ <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="banner d-flex align-items-center rounded-3">
+          <h3 class="text-white px-3">
+            <a href="/admin/dashbord" class="text-white text-decoration-none">Admin</a>
+            <i class="fa-solid fa-chevron-right"></i> Hero Section
+          </h3>
+          <div class="stripes"></div>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-12 p-4 border rounded-3 shadow-sm bg-white">
+
+      <form action="/admin/save_hero_title" method="post" class="mb-4 d-flex gap-2">
+        <input type="text" name="title" class="form-control w-50" placeholder="Enter Title" required>
+        <button style="background-color: #4f4392;" class="btn text-white">
+          <i class="fas fa-plus-circle me-1"></i> Add Title
+        </button>
+      </form>
+
+      <div class="d-flex flex-wrap gap-2" id="title-container">
+        <% title.forEach(function(col) { %>
+          <div class="badge bg-light border text-dark d-flex align-items-center p-2" style="font-size: 1rem;">
+            <strong><%= col.title %></strong>
+            <a href="/admin/delete_title/<%=col.title_id%>">
+              <input type="hidden" name="id" value="<%= col.id %>">
+              <button type="submit" class="btn btn-sm btn-link text-danger p-0" title="Delete">
+                <b><i class="fas fa-times px-2"></i></b>
+              </button>
+            </a>
+          </div>
+        <% }); %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container bg-white px-4 mb-5">
+
+  <form action="/admin/save_hero_section" method="POST" enctype="multipart/form-data" class="border p-4 rounded">
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description <b class="text-danger">*</b></label>
+      <textarea name="description" id="description" class="form-control" rows="2" placeholder="Enter a short description..." required><%=hero_section.description%></textarea>
+    </div>
+
+    <!-- Button Text -->
+    <div class="mb-3">
+      <label for="button_text" class="form-label">Button Text <b class="text-danger">*</b></label>
+      <input type="text" value="<%=hero_section.button_text%>" name="button_text" id="button_text" class="form-control" placeholder="Enter button label (e.g., Learn More)" required>
+    </div>
+
+    <!-- Image Uploads -->
+<div class="row g-3">
+  <% for (let i = 1; i <= 5; i++) { %>
+    <div class="col-md-3">
+      <label for="image<%= i %>" class="form-label">Image <%= i %> <b class="text-danger">*</b></label>
+      <input type="file" name="image<%= i %>" id="image<%= i %>" accept="image/*" class="form-control" accept="image/*">
+    </div>
+    <div class="col-md-1 text-center">
+      <% if (hero_section['image' + i]) { %>
+        <img class="rounded-3" style="height: 70px; width: 70px;" src="/upload/<%= hero_section['image' + i] %>" alt="Image <%= i %>">
+      <% } else { %>
+        <img class="rounded-3" style="height: 70px; width: 70px;" src="/images/placeholder.png" alt="No image">
+      <% } %>
+    </div>
+  <% } %>
+</div>
+
+
+    <!-- Submit -->
+    <div class="mt-4 text-center">
+      <button type="submit" style="background-color: #4f4392;" class="btn text-white  px-4">
+        <i class="fas fa-save me-1"></i> Save Section
+      </button>
+    </div>
+  </form>
+</div>
+
+
+
+<%- include("Footer") %>
